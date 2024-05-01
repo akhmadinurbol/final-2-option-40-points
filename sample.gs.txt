@@ -1,0 +1,20 @@
+async function sample2() {
+  // Set your API key for the Gemini API.
+  const apiKey = "###9Iw";
+
+  // Set the file ID of the PDF file containing the original invoice in Russian or Kazakh.
+  const fileId = "1AI9-geAj-VPOfcyRGSCxnv93EEFts56A";
+
+  const ip = new InvoiceApp({
+    apiKey,
+    blob: DriveApp.getFileById(fileId).getBlob(),
+  });
+  const res = await ip.run();
+  if (typeof res == "object") {
+    console.log("--- Valid values.");
+    console.log(JSON.stringify(res));
+  } else {
+    console.log("--- Invalid values.");
+    console.log(res);
+  }
+}
